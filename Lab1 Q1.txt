@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+
+bool isPalindrome(char str[]) {
+    int left = 0;
+    int right = strlen(str) - 1;
+    while (left < right) {
+        if (str[left] != str[right])
+            return false;
+        left++;
+        right--;
+    }
+    return true;
+}
+
+int main() {
+    int i, n;
+    printf("Enter number of words: ");
+    scanf("%d", &n);
+
+    char words[n][100]; 
+    for (i = 0; i < n; i++) {
+        printf("Enter word %d: ", i + 1);
+        scanf("%s", words[i]);
+    }
+
+    char result[100] = "";
+    for (i = 0; i < n; i++) {
+        if (isPalindrome(words[i])) {
+            strcpy(result, words[i]);
+            break;
+        }
+    }
+
+    if (strlen(result) > 0)
+        printf("First palindromic string: %s\n", result);
+    else
+        printf("First palindromic string: \"\"\n");
+
+    return 0;
+}
